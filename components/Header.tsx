@@ -1,9 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../assets/logo-cropped.png";
 import { Menu } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 const Header = () => {
+  const pathname = usePathname();
+
   return (
     <header className="fixed w-full py-3 px-1.5 md:px-10 lg:px-16 flex items-center justify-between bg-white">
       <div className="flex items-center gap-2">
@@ -15,18 +21,84 @@ const Header = () => {
         </div>
       </div>
 
-      <Menu className="md:hidden" size={35}/>
+      {/* MOBILE */}
+      <Popover>
+        <PopoverTrigger>
+          <Menu className="md:hidden" size={35} />
+        </PopoverTrigger>
+        <PopoverContent className="w-32">
+          <ul className="flex flex-col gap-2">
+            <li>
+              <Link
+                href="/"
+                className={`${
+                  pathname === "/" ? "font-bold text-[#022444]" : ""
+                } hover:font-semibold hover:text-[#022444]`}
+              >
+                Home
+              </Link>
+            </li>
+
+            {/* ADMIN */}
+            <li>
+              <Link
+                href="/admin"
+                className={`${
+                  pathname === "/admin" ? "font-bold text-[#022444]" : ""
+                } hover:font-semibold hover:text-[#022444]`}
+              >
+                Admin
+              </Link>
+            </li>
+
+            {/* NPF */}
+            <li>
+              <Link
+                href="https://www.npf.gov.ng/"
+                target="_blank"
+                className="hover:font-semibold hover:text-[#022444]"
+              >
+                NPF
+              </Link>
+            </li>
+          </ul>
+        </PopoverContent>
+      </Popover>
 
       <nav className="hidden md:block">
         <ul className="flex items-center gap-8">
           <li>
-            <Link href="/" className="hover:font-semibold hover:text-[#022444]">
+            <Link
+              href="/"
+              className={`${
+                pathname === "/" ? "font-bold text-[#022444]" : ""
+              } hover:font-semibold hover:text-[#022444]`}
+            >
               Home
             </Link>
           </li>
-          <li>Admin</li>
+
+          {/* ADMIN */}
           <li>
-            <Link href="https://www.npf.gov.ng/">NPF</Link>
+            <Link
+              href="/admin"
+              className={`${
+                pathname === "/admin" ? "font-bold text-[#022444]" : ""
+              } hover:font-semibold hover:text-[#022444]`}
+            >
+              Admin
+            </Link>
+          </li>
+
+          {/* NPF */}
+          <li>
+            <Link
+              href="https://www.npf.gov.ng/"
+              target="_blank"
+              className="hover:font-semibold hover:text-[#022444]"
+            >
+              NPF
+            </Link>
           </li>
         </ul>
       </nav>

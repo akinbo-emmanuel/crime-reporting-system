@@ -7,7 +7,7 @@ const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Crime Reporting System",
-  description: "A Crime Report System built by Samson Akinbo",
+  description: "A Crime Reporting System built by Samson Akinbo",
 };
 
 export default function RootLayout({
