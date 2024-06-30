@@ -1,5 +1,5 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyDwrD3tznriz4EDmG_SFMG_7aBLR2k5_-4",
+    apiKey: process.env.FIREBASE_KEY,
     authDomain: "crime-reporting-system-48583.firebaseapp.com",
     projectId: "crime-reporting-system-48583",
     storageBucket: "crime-reporting-system-48583.appspot.com",

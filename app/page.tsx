@@ -39,21 +39,19 @@ export default function Home() {
     witnessInfo,
   };
 
-  // console.log(formData);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
+    try {
+      await addDoc(collection(db, "reports"), formData);
+      alert("Report submitted successfully");
+    } catch (error) {
+      console.error("Error adding documents: ", error);
+      alert("Error submitting report. Please try again.");
+    }
 
-  //   try {
-  //     await addDoc(collection(db, "reports"), formData);
-  //     alert("Report submitted successfully");
-  //   } catch (error) {
-  //     console.error("Error adding documents: ", error);
-  //     alert("Error submitting report. Please try again.");
-  //   }
-
-  //   console.log(formData);
-  // };
+    console.log(formData);
+  };
 
   return (
     <main className="bg-[url('https://www.npf.gov.ng/images/mopol.jpg')] pt-36 pb-20 bg-cover bg-center bg-no-repeat min-h-screen px-1.5 md:px-10 lg:px-20 xl:px-40 flex justify-center items-center">
@@ -61,6 +59,7 @@ export default function Home() {
 
       <div className="bg-white p-5 md:py-10 xl:py-20 md:px-10 shadow-2xl rounded-lg flex items-center justify-center text-sm">
         <form
+          onSubmit={handleSubmit}
           id="crime-report-form"
           className="grid md:grid-cols-2 xl:grid-cols-3 w-full gap-5"
         >
@@ -265,10 +264,10 @@ export default function Home() {
               type="file"
               id="evidence"
               name="evidence"
-              value={witnessInfo}
-              onChange={(e) => {
-                setWitnessInfo(e.target.value);
-              }}
+              // value={witnessInfo}
+              // onChange={(e) => {
+              //   setWitnessInfo(e.target.value);
+              // }}
               className="w-full h-full border py-2 px-5 rounded-md outline-none"
             />
           </div>
@@ -287,7 +286,10 @@ export default function Home() {
               </p>
             </div>
 
-            <button type="submit" className="w-full py-2.5 bg-[#022444] text-white rounded-lg">
+            <button
+              type="submit"
+              className="w-full py-2.5 bg-[#022444] text-white rounded-lg"
+            >
               Submit Report
             </button>
           </div>
