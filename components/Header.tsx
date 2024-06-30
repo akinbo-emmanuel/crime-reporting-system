@@ -50,17 +50,6 @@ const Header = () => {
                 Admin
               </Link>
             </li>
-
-            {/* NPF */}
-            <li>
-              <Link
-                href="https://www.npf.gov.ng/"
-                target="_blank"
-                className="hover:font-semibold hover:text-[#022444]"
-              >
-                NPF
-              </Link>
-            </li>
           </ul>
         </PopoverContent>
       </Popover>
@@ -87,17 +76,6 @@ const Header = () => {
               } hover:font-semibold hover:text-[#022444]`}
             >
               Admin
-            </Link>
-          </li>
-
-          {/* NPF */}
-          <li>
-            <Link
-              href="https://www.npf.gov.ng/"
-              target="_blank"
-              className="hover:font-semibold hover:text-[#022444]"
-            >
-              NPF
             </Link>
           </li>
         </ul>
