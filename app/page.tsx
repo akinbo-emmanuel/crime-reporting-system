@@ -8,11 +8,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "@/firebase/firebase";
-// import { db } from '../../firebase/firebase';
+import {
+  Evidence,
+  submitReportWithEvidence,
+  submitReportWithoutEvidence,
+} from "./api/upload";
 
 export default function Home() {
+  const [loading, setLoading] = useState(false);
+
+  const [file, setFile] = useState<File | null>(null);
+
   const [fullName, setFullName] = useState<string>("");
   const [tel, setTel] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -24,7 +30,11 @@ export default function Home() {
   const [description, setDescription] = useState("");
   const [suspectInfo, setSuspectInfo] = useState("");
   const [witnessInfo, setWitnessInfo] = useState("");
-  const [victimInfo, setVictimInfo] = useState("");
+  const [evidence, setEvidence] = useState<Evidence | null>({
+    url: "",
+    name: "",
+    createdAt: new Date(),
+  });
 
   const formData = {
     fullName,
@@ -37,20 +47,17 @@ export default function Home() {
     description,
     suspectInfo,
     witnessInfo,
+    evidence,
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      await addDoc(collection(db, "reports"), formData);
-      alert("Report submitted successfully");
-    } catch (error) {
-      console.error("Error adding documents: ", error);
-      alert("Error submitting report. Please try again.");
+    if (file) {
+      await submitReportWithEvidence(file, setLoading, setEvidence, formData);
+    } else {
+      await submitReportWithoutEvidence(formData, setLoading);
     }
-
-    console.log(formData);
   };
 
   return (
@@ -264,10 +271,11 @@ export default function Home() {
               type="file"
               id="evidence"
               name="evidence"
-              // value={witnessInfo}
-              // onChange={(e) => {
-              //   setWitnessInfo(e.target.value);
-              // }}
+              onChange={(e) => {
+                if (e.target.files) {
+                  setFile(e.target.files[0]);
+                }
+              }}
               className="w-full h-full border py-2 px-5 rounded-md outline-none"
             />
           </div>
@@ -290,7 +298,7 @@ export default function Home() {
               type="submit"
               className="w-full py-2.5 bg-[#022444] text-white rounded-lg"
             >
-              Submit Report
+              {loading ? "Loading..." : "Submit Report"}
             </button>
           </div>
         </form>
