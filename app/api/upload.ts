@@ -10,7 +10,7 @@ export type Evidence = {
   createdAt: Date;
 };
 
-export const submitReportWithEvidence = async (
+export const SubmitReportWithEvidence = async (
   file: File,
   setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   setEvidence: React.Dispatch<React.SetStateAction<Evidence | null>>,
@@ -72,7 +72,7 @@ export const submitReportWithEvidence = async (
   );
 };
 
-export const submitReportWithoutEvidence = async (
+export const SubmitReportWithoutEvidence = async (
   formData: Object,
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {

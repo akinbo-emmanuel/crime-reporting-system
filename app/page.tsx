@@ -10,8 +10,8 @@ import {
 import { useState } from "react";
 import {
   Evidence,
-  submitReportWithEvidence,
-  submitReportWithoutEvidence,
+  SubmitReportWithEvidence,
+  SubmitReportWithoutEvidence,
 } from "./api/upload";
 
 export default function Home() {
@@ -54,9 +54,9 @@ export default function Home() {
     e.preventDefault();
 
     if (file) {
-      await submitReportWithEvidence(file, setLoading, setEvidence, formData);
+      await SubmitReportWithEvidence(file, setLoading, setEvidence, formData);
     } else {
-      await submitReportWithoutEvidence(formData, setLoading);
+      await SubmitReportWithoutEvidence(formData, setLoading);
     }
   };
 
