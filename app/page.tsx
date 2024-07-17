@@ -61,7 +61,7 @@ export default function Home() {
   };
 
   return (
-    <main className="bg-[url('https://www.npf.gov.ng/images/mopol.jpg')] pt-36 pb-20 bg-cover bg-center bg-no-repeat min-h-screen px-1.5 md:px-10 lg:px-20 xl:px-40 flex justify-center items-center">
+    <div className="pt-36 pb-20 min-h-screen px-1.5 md:px-10 lg:px-20 xl:px-40 flex justify-center items-center">
       {/* <div className="bg-black/[50%] absolute top-0 w-full h-full"></div> */}
 
       <div className="bg-white p-5 md:py-10 xl:py-20 md:px-10 shadow-2xl rounded-lg flex items-center justify-center text-sm">
@@ -303,6 +303,6 @@ export default function Home() {
           </div>
         </form>
       </div>
-    </main>
+    </div>
   );
 }

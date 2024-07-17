@@ -39,6 +39,17 @@ const Header = () => {
               </Link>
             </li>
 
+            <li>
+              <Link
+                href="/check-status"
+                className={`${
+                  pathname === "/check-status" ? "font-bold text-[#022444]" : ""
+                } hover:font-semibold hover:text-[#022444]`}
+              >
+                Check Status
+              </Link>
+            </li>
+
             {/* ADMIN */}
             <li>
               <Link
@@ -64,6 +75,17 @@ const Header = () => {
               } hover:font-semibold hover:text-[#022444]`}
             >
               Home
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              href="/check-status"
+              className={`${
+                pathname === "/check-status" ? "font-bold text-[#022444]" : ""
+              } hover:font-semibold hover:text-[#022444]`}
+            >
+              Check Status
             </Link>
           </li>
 

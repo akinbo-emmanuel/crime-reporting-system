@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={`${manrope.className}`}>
         <Header />
 
-        {children}
+        <main className="bg-[url('https://res.cloudinary.com/dypvfvu6i/image/upload/v1721196520/bg_nkfvng.jpg')] bg-cover bg-center bg-no-repeat">{children}</main>
 
         <Toaster />
       </body>
