@@ -1,6 +1,7 @@
 import Copyright from "@/components/Copyright";
 import Image from "next/image";
 import logo from "../../assets/logo-cropped.png";
+import Link from "next/link";
 
 const AdminPage = () => {
   return (
@@ -60,12 +61,14 @@ const AdminPage = () => {
             </p> */}
 
             {/* SIGN IN */}
-            <button
-              type="submit"
-              className="bg-[#162D3A] text-white py-4 rounded-xl "
-            >
-              Sign In
-            </button>
+            <Link href="/admin/dashboard">
+              <button
+                type="submit"
+                className="bg-[#162D3A] text-white py-4 rounded-xl w-full"
+              >
+                Sign In
+              </button>
+            </Link>
           </form>
 
           {/* <p className=" text-base font-normal text-center ">
