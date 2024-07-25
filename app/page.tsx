@@ -1,5 +1,6 @@
 "use client";
 
+import SubmitReport, { Evidence } from "@/api/upload";
 import {
   Select,
   SelectContent,
@@ -7,15 +8,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { generalStore } from "@/store/store";
 import { useState } from "react";
-import {
-  Evidence,
-  SubmitReportWithEvidence,
-  SubmitReportWithoutEvidence,
-} from "./api/upload";
 
 export default function Home() {
-  const [loading, setLoading] = useState(false);
+  const { submitReportWithEvidence, submitReportWithoutEvidence } = SubmitReport();
+  const loading = generalStore((state: any) => state.loading);
+  // const [loading, setLoading] = useState(false);
 
   const [file, setFile] = useState<File | null>(null);
 
@@ -53,11 +52,13 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (file) {
-      await SubmitReportWithEvidence(file, setLoading, setEvidence, formData);
-    } else {
-      await SubmitReportWithoutEvidence(formData, setLoading);
-    }
+    await submitReportWithoutEvidence(formData);
+
+    // if (file) {
+    //   await SubmitReportWithEvidence(file, setEvidence, formData);
+    // } else {
+    //   await SubmitReportWithoutEvidence(formData);
+    // }
   };
 
   return (
