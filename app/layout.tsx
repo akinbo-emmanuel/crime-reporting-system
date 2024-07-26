@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import { Toaster } from "@/components/ui/toaster";
+import LoadingModal from "@/components/LoadingModal";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
@@ -22,7 +23,8 @@ export default function RootLayout({
         <Header />
 
         <main className="bg-[url('https://res.cloudinary.com/dypvfvu6i/image/upload/v1721196520/bg_nkfvng.jpg')] bg-cover bg-center bg-no-repeat">{children}</main>
-
+        
+        <LoadingModal />
         <Toaster />
       </body>
     </html>

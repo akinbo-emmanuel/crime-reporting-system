@@ -34,6 +34,7 @@ export default function Home() {
     name: "",
     createdAt: new Date(),
   });
+  const status = "submitted";
 
   const formData = {
     fullName,
@@ -47,18 +48,17 @@ export default function Home() {
     suspectInfo,
     witnessInfo,
     evidence,
+    status,
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await submitReportWithoutEvidence(formData);
-
-    // if (file) {
-    //   await SubmitReportWithEvidence(file, setEvidence, formData);
-    // } else {
-    //   await SubmitReportWithoutEvidence(formData);
-    // }
+    if (file) {
+      await submitReportWithEvidence(file, setEvidence, formData);
+    } else {
+      await submitReportWithoutEvidence(formData);
+    }
   };
 
   return (

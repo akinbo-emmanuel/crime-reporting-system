@@ -12,7 +12,7 @@ export type Evidence = {
 };
 
 const SubmitReport = () => {
-  const updateLoading = generalStore((state: any) => state.updateLoading);
+  const updateState = generalStore((state: any) => state.updateState);
   const { toast } = useToast();
   const [progress, setProgress] = useState(0);
 
@@ -23,7 +23,7 @@ const SubmitReport = () => {
   ) => {
     if (!file) return;
 
-    updateLoading(true);
+    updateState({ loading: true });
 
     const storageRef = ref(storage, `uploads/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
@@ -54,11 +54,11 @@ const SubmitReport = () => {
         });
 
         try {
-          await addDoc(collection(db, "reports"), formData);
+          const docRef = await addDoc(collection(db, "reports"), formData);
           toast({
             title: "Report Successfully Submitted",
             description:
-              "Your Report has been successfully submitted. Security Agencies would contact you shortly",
+              `Your Report has been successfully submitted. Security Agencies would contact you shortly. Your Report ID is: ${docRef.id}`,
           });
         } catch (error: any) {
           toast({
@@ -69,34 +69,34 @@ const SubmitReport = () => {
         }
 
         setProgress(100);
-        updateLoading(false);
+        updateState({ loading: false });
       }
     );
   }
 
-  const submitReportWithoutEvidence = async (
-    formData: Object
-  ) => {
-
-    updateLoading(true);
-
+  const submitReportWithoutEvidence = async (formData: Object) => {
     try {
-      await addDoc(collection(db, "reports"), formData);
+      updateState({ loading: true });
+
+      const docRef = await addDoc(collection(db, "reports"), formData);
+      updateState({ id: docRef.id });
+
       toast({
         title: "Report Successfully Submitted",
-        description:
-          "Your Report has been successfully submitted. Security Agencies would contact you shortly",
+        description: `Your Report has been successfully submitted. Security Agencies would contact you shortly. Your Report ID is: ${docRef.id}`,
       });
+
+      updateState({ loading: false });
     } catch (error: any) {
+
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: error.response.message,
+        description: error.response?.message || error.message,
       });
+      updateState({ loading: false });
     }
-
-    updateLoading(false);
-  }
+  };
 
   return { submitReportWithEvidence, submitReportWithoutEvidence };
 }

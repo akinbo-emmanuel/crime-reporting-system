@@ -1,6 +1,9 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 export const generalStore = create((set) => ({
   loading: false,
-  updateLoading: (loading: any) => set({ bears: loading }),
-}))
+  reportId: null,
+  reportStatus: null,
+  updateState: (newState: Partial<{ loading: boolean; reportId: string | null; reportStatus: string | null }>) =>
+    set(newState),
+}));
