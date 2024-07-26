@@ -9,10 +9,16 @@ export interface Evidence {
 
 export interface Report {
   id: string;
-  fullName: string;
-  dateTime: Timestamp; // Use Timestamp for date fields
-  location: string;
+  crimeType: string;
+  dateTime: Timestamp;
   description: string;
+  email: string;
   evidence: Evidence[];
+  fullName: string;
+  location: string;
+  otherCrimeType: string;
   status: string;
+  suspectInfo: string;
+  tel: string;
+  witnessInfo: string;
 }

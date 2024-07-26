@@ -10,12 +10,22 @@ const getReports = async (): Promise<Report[]> => {
     const data = doc.data();
     return {
       id: doc.id,
-      fullName: data.fullName,
+      crimeType: data.crimeType,
       dateTime: data.dateTime instanceof Timestamp ? data.dateTime : Timestamp.fromDate(new Date(data.dateTime)),
-      location: data.location,
       description: data.description,
-      evidence: data.evidence,
-      status: data.status || "Pending",
+      email: data.email,
+      evidence: Array.isArray(data.evidence) ? data.evidence.map((evidence: any) => ({
+        url: evidence.url,
+        name: evidence.name,
+        createdAt: evidence.createdAt instanceof Timestamp ? evidence.createdAt : Timestamp.fromDate(new Date(evidence.createdAt)),
+      })) : [],
+      fullName: data.fullName,
+      location: data.location,
+      otherCrimeType: data.otherCrimeType,
+      status: data.status? data.status : "N/A",
+      suspectInfo: data.suspectInfo,
+      tel: data.tel,
+      witnessInfo: data.witnessInfo,
     };
   });
   return reportList;
