@@ -34,7 +34,7 @@ export default function Home() {
     name: "",
     createdAt: new Date(),
   });
-  const status = "submitted";
+  const status = "new";
 
   const formData = {
     fullName,
