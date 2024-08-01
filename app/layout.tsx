@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={`${manrope.className}`}>
         <Header />
 
-        <main className="bg-[url('https://res.cloudinary.com/dypvfvu6i/image/upload/v1722530496/report-crime/IMG_0758_cq9kjm.jpg ')] bg-cover bg-center bg-no-repeat">{children}</main>
+        <main className="bg-[url('https://res.cloudinary.com/dypvfvu6i/image/upload/v1722530496/report-crime/IMG_0758_cq9kjm.jpg')] bg-cover bg-center bg-no-repeat">{children}</main>
         
         <LoadingModal />
         <Toaster />
