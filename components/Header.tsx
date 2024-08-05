@@ -106,7 +106,7 @@ const Header = () => {
             {/* CONTACT US */}
             <li>
               <Link
-                href="/"
+                href="/contact-the-npf"
                 className={`${
                   pathname === "/contact-us" ? "font-bold text-[#022444]" : ""
                 } hover:font-semibold hover:text-[#022444]`}
