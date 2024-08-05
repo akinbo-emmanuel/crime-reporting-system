@@ -1,6 +1,6 @@
 "use client"
 
-import checkStatus from "@/api/checkReportStatus";
+import CheckStatus from "@/api/checkReportStatus";
 import { useToast } from "@/components/ui/use-toast";
 import { generalStore } from "@/store/store";
 import { useEffect, useState } from "react";
@@ -11,7 +11,7 @@ const CheckStatusPage = () => {
   const updateState = generalStore((state: any) => state.updateState);
   const reportId = generalStore((state: any) => state.reportId);
   const { toast } = useToast();
-  const checkReportStatus = checkStatus();
+  const checkReportStatus = CheckStatus();
 
   useEffect(() => {
     setReportID('');

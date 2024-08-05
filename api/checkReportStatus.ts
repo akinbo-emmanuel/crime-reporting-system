@@ -3,7 +3,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { db } from "@/firebase/firebase";
 import { generalStore } from "@/store/store";
 
-const checkStatus = () => {
+const CheckStatus = () => {
     const { toast } = useToast();
     const updateState = generalStore((state: any) => state.updateState);
 
@@ -49,4 +49,4 @@ const checkStatus = () => {
 
 
 
-export default checkStatus
+export default CheckStatus
